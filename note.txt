@@ -1,0 +1,97 @@
+day1
+print('hello,world')
+print(100+200)
+print('100 + 200' , 100 + 200 )
+name = input()
+print(name)
+name = input()
+print('hello',name)
+s = input('--> ')
+s
+print('1024 * 768 =',1024 * 768)
+print() input()函数
+print('1024 * 768 =',1024 * 768)  要有逗号， 
+1.25e-5 表示  0.0000125
+\n表示换行，\t表示制表符
+print(r'\\\n\\') 多个特殊字符 都不转义 r''     \\\n\\
+表示多个\n换行符
+print('''a   
+b
+c
+d''')
+print('I\'m "OK"!\n23')
+print(r'\\\n\\')
+print('''a
+b
+c
+d''')
+'''
+n = 123 
+f = 456.789
+s1 = 'hellow,world'
+s2 = 'Hello, \'Adam\''
+s3 = r'Hello, "Bart"'
+s4 = r'''hello,
+Lisa!'''
+
+print('''n = 123
+f = 456.678
+s1 = 'hello,world'
+s2 = 'Hello, \'Adam\'
+s3 = r'Hello,"Bart"'
+s4 = r\'\'\'Hello,\nLisa!\'\'\'
+''')
+
+占位符	替换内容
+%d	整数
+%f	浮点数
+%s	字符串
+%x	十六进制整数
+
+s1 = 72 
+s2 = 85
+r = (s2 - s1)/s1 * 100
+print('%.1f' % r)
+%.1f %f浮点数占位符， %.1f保留小数点后一位小数，  % 固定 r参数
+
+
+占位符没生效使用round函数
+weight_xh = 68
+height_xh = 1.76
+bmi = weight_xh/(height_xh**2)
+print(bmi)
+if bmi < 18.5:
+    print( 'BMI =',round(bmi,2))
+elif bmi < 25:
+    print( 'BMI =',round(bmi,2))
+elif bmi < 28:
+    print( 'BMI = %f, c' % bmi)
+elif bmi < 32:
+    print( 'BMI = %f, d' % bmi)
+elif bmi > 32:
+    print( 'BMI = %f, e' % bmi)
+# -*- coding: utf-8 -*-
+import math
+print(math.sqrt(4))
+
+##自定义函数
+def quadratic(a, b, c):
+    dt = math.sqrt(b*b - 4*a*c)
+    x1 = (-b + dt)/(2 * a)
+    x2 = (-b - dt)/(2 * a)
+    return x1, x2
+print(quadratic(2, 5, 4))
+
+##自定义函数-多参数（不确定个数）  
+传入变量可以是list ,caple
+def calc(*aa):
+    sum = 0
+    for n in aa:
+        sum = sum + n * n
+    return sum
+print(calc(1, 2))
+传入list使用*      
+L = [1, 3]
+print(calc(*L))
+
+
