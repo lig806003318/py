@@ -179,6 +179,18 @@ def fn(x, y):
 print(reduce(fn, [1, 2, 3, 4]))
 '''
 
- 
- 
+#2019.09.10
+#decorator 装饰器， 在原函数不变的情况下，对函数的内容进行修改
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s()' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+@log
+def now():
+    print('1111')
+now()
+call now()
+1111
+#  func函数形参数， @log引用   定义一个now函数。 直接调用now函数 相当于把now函数传入Log函数中。
 
