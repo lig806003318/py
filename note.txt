@@ -194,3 +194,52 @@ call now()
 1111
 #  func函数形参数， @log引用   定义一个now函数。 直接调用now函数 相当于把now函数传入Log函数中。
 
+
+----------------------------------
+同步单个文件到目标服务器
+
+#!/bin/evn python
+import os
+import sys
+from IPy import IP
+origin_file = sys.argv[1]
+dest_ip = IP('172.30.17.11')
+dest_path = "/tmp/%s" % origin_file
+
+def check_net(dip):
+    ip_res = os.system("ping -c 2 %s >> /dev/null " % (dip))
+    if ip_res != 0:
+        print("PING false.")
+        sys.exit()
+    else:
+        print("PING success.")
+
+def scp_ip(ofile, dip, dpath):
+    scp_res = os.system("scp %s  infinitesys@%s:%s" % (ofile, dip, dpath))
+    if scp_res != 0:
+        print("SCP false.")
+    else:
+        print('''SCP success.
+        dest_PATH: %s''' % dpath)
+        sys.exit()
+
+def main():
+    check_net(dest_ip)
+#    os.system("ls -l %s" % origin_file)
+    print("sending %s to %s:%s" % (origin_file, dest_ip, dest_path))
+    scp_ip(origin_file, dest_ip, dest_path)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+
+
+
+
+
+
