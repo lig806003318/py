@@ -1,0 +1,12 @@
+echo "# py" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/lig806003318/py.git
+git push -u origin master
+
+
+
+
+多行注释：选定内容，先CTRL+K，然后CTRL+C 
+取消注释：选定内容，先CTRL+K，然后CTRL+U

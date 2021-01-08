@@ -1,0 +1,245 @@
+                            python从入门到放弃
+------------------------------------------------------------------------------------------
+ 学习笔记整理
+ 2019.08.30  复习
+ python基础： 
+
+ 数据类型和变量： 
+    整数 1, 2,-1 
+    浮点数 1.2 1.23x10的九次方    1.23e9 1.12的9次方
+    字符串 'a' 'b'  "c" 如果想表示' " 本身 请转义使用：\
+\n表示换行，\t表示制表符
+实例： 
+1. print('a''\t''b')    输出：a       b  
+2. print('\\\t''a')     输出：\       a
+3. print(r'\\\\\\t')    输出： print(r'\\\\\\t')                     全都不转义
+4. print('''1           输出：       1                                多个\n  
+2                                   2
+3                                   3
+''')
+
+字符编码：
+    文件顶行： # -*- unicode: UTF-8 -*-
+占位符：
+占位符	替换内容
+%d	    整数
+%f   	浮点数
+%s  	字符串
+%x  	十六进制整数
+实例：
+1.
+a = "i\'m %s. I\'m %d years old" % ('summer', 99)
+print(a)
+输出： i'm summer. I'm 99 years old                 固定格式为： 占位符   %   ()
+
+list定义：可变的有序表
+L = ['a', 'b'， 'c']    索引访问： L[0]='a'    l[-1]='c'   追加末尾：append  插入指定位置 insert    删除指定索引元素pop(1)空为最后一位  替换直接赋值 
+tuple定义： 不可改变
+L = ('a', 'b', 'c')   没有增删改查方法   如果定义一个tuple 元素只有一个1  L = (1,) 必须有,
+dict定义： dictionary  快的查找速度 内存占用大。  无序性
+L = {'a': 1, 'b': 2, 'c': 3 }   L.get(key)=value  L.pop(key) 删除
+set定义：  不存储value 无序性 不可重复
+L = set([1,2,3,3])  3会被删掉
+
+函数：
+可变参数： 参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple
+def t1(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+
+#print(t1([1, 2, 3]))
+print(t1(1,2))
+L = [1, 2, 3]
+print(t1(*L))
+如果正常传参，调用时候需要传入一个list或者tuple类型参数，当参数*numbers时候，调用直接传输int类型参数即可，也可以直接传入list类型t1(*L)
+默认参数：
+def t1(x ,n=2):
+    s = 1 
+    while n > 0
+        n = n -1 
+        s = s * x
+    return s
+print(t1(1)) 传一个参数即可，n已经默认=2
+关键字参数：字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict
+def person(name, age, **kw):
+    print('name:', name, 'age:', 'other:', kw)
+person('a', 12, city='beijing')
+定义关键字参数的函数：调用时候必须有city和job参数
+def t1(name, age, *, city, job):
+    print(name, age, city, job)
+t1('a', 12, city='beijing', job='engineer')
+----------------------
+2019.09.02  复习       调用函数时候，传入List*kw 传入dirc**kw
+关键字参数实例：
+1、定义一个person函数
+def person(name, age, **kw):
+    print('name', name, 'age', age, 'other', kw)
+2、定义一个dirc
+extra = {'city': 'beijing', 'job':'engineer'}
+3、！调用
+   笨方法
+person('riven', 18, city1=extra['city'], job1=extra['job'])
+   推荐
+person('riven', 18, **extra)
+-------------------------------------------------
+2019.09.02   
+comprehension[ˌkɒmprɪˈhenʃn]  n.理解力;领悟能力
+print(list(range(1, 11)))
+def a():
+    L = []
+    for i in range(1, 11):
+        L.append(i * i)
+    print(L)
+a()
+简写
+print([x * x for x in range(1,11)])
+全排列
+print([m + n for m in 'ABC' for n in 'ABC'])
+['AA', 'AB', 'AC', 'BA', 'BB', 'BC', 'CA', 'CB', 'CC']
+遍历key和value
+d = {'x':'A', 'y':'B'}
+for k, v in d.items():
+    print(k, '=', v)
+x = A
+y = B
+
+print(isinstance(1, str))
+判断List是字符串变成小写。
+L = ['AAAA', 'World', 18, 'Apple']
+def a(b):
+    for i in b:        
+        if isinstance(i, str) == 1:
+            print(i.lower())
+        else:
+            print('aaaaaaaa')
+a(L)
+False
+aaaa
+world
+aaaaaaaa
+apple
+
+
+generator[ˈdʒenəreɪtə(r)]   生成器            n.发电机;发生器;电力公司
+yield[jiːld]    n.产量;产出;利润
+没看懂以后再议
+例子：
+斐波拉契数列
+1, 1, 2, 3, 5, 8, 13, 21, 34
+def fib(max):
+    a, b, c = 0, 0, 1
+    while a < max:
+        print(c)
+        b, c = c, b + c
+        a = a + 1
+    return 'done'
+fib(6)
+
+'''
+def odd():
+    print('step 1')
+    yield 1
+    print('step 2')
+    yield(3)
+    print('step 3')
+    yield(5)
+
+o = odd()
+next(o)
+
+
+
+2019.09.5
+iterator迭代器  interable可迭代的
+m1 = ['apple', 'banana', 'cherry']
+#遍历 OK
+for i in m1:
+    print(i)
+
+m2 = iter(m1) 
+print(m2)
+#<list_iterator object at 0x001EF810>
+print(next(m2))
+print(next(m2))
+print(next(m2))
+
+# map就是把那个函数应用在那个列表每个元素上面
+def f(x):
+    return x * x
+r = map(f, [1, 2, 3, 4])
+
+#reduce 把参数代入函数后
+#1*1+2*2 =5
+#5*5+3*3=34
+#34*34+4*4=1172
+def fn(x, y):
+    return x * x + y * y
+print(reduce(fn, [1, 2, 3, 4]))
+'''
+
+#2019.09.10
+#decorator 装饰器， 在原函数不变的情况下，对函数的内容进行修改
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s()' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+@log
+def now():
+    print('1111')
+now()
+call now()
+1111
+#  func函数形参数， @log引用   定义一个now函数。 直接调用now函数 相当于把now函数传入Log函数中。
+
+
+----------------------------------
+同步单个文件到目标服务器
+
+#!/bin/evn python
+import os
+import sys
+from IPy import IP
+origin_file = sys.argv[1]
+dest_ip = IP('172.30.17.11')
+dest_path = "/tmp/%s" % origin_file
+
+def check_net(dip):
+    ip_res = os.system("ping -c 2 %s >> /dev/null " % (dip))
+    if ip_res != 0:
+        print("PING false.")
+        sys.exit()
+    else:
+        print("PING success.")
+
+def scp_ip(ofile, dip, dpath):
+    scp_res = os.system("scp %s  infinitesys@%s:%s" % (ofile, dip, dpath))
+    if scp_res != 0:
+        print("SCP false.")
+    else:
+        print('''SCP success.
+        dest_PATH: %s''' % dpath)
+        sys.exit()
+
+def main():
+    check_net(dest_ip)
+#    os.system("ls -l %s" % origin_file)
+    print("sending %s to %s:%s" % (origin_file, dest_ip, dest_path))
+    scp_ip(origin_file, dest_ip, dest_path)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+
+
+
+
+
+
