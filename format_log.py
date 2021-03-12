@@ -23,7 +23,7 @@ def clean_log(path):
         file_ctime = os.path.getmtime(i)
         if file_ctime <= re_date_unix:
             # os.remove(i)
-            # os.system('rmdir /s/q i')
+            os.system('rmdir /s/q {}'.format(i) )
             print('已经删除得文件:  ', i)
         else:
             print('保留得文件   :  ', i)
